@@ -6,3 +6,13 @@
  * 
  */
 ?>
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+</html>
