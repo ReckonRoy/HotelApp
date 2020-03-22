@@ -7,4 +7,27 @@
      * @auther Le-Roy
      * 
      */
+
+    class User
+    {
+        public $name, $surname, $email, $checkInDate, $checkOutDate, $non, $hotelInfo_array, $hotel_array = '';
+        
+        function __construct($name, $surname, $email, $cid, $cod, $non, $hotelInfo_array, $hotel_array)
+        {
+            $this -> name = $name;
+            $this -> surname = $surname;
+            $this -> email = $email;
+            $this -> checkInDate = $cid;
+            $this -> checkOutDate = $cod;
+            $this -> non = $non;
+            $this -> hotelInfo_array = $hotelInfo_array;
+            $this -> hotel_array = $hotel_array;
+            
+        }
+        
+        function getUser()
+        {
+            return 
+        }
+    }
 ?>
