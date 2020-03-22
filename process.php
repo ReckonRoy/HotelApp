@@ -27,7 +27,7 @@
         
         function getUser()
         {
-            return 
+            return "<ul><li>Name: ".$this -> name."</li><li>Surname: ".$this -> name."</li><li>Email: ".$this -> name."</li></ul>";
         }
     }
 ?>
