@@ -40,21 +40,22 @@
             return $this -> checkOutDate;
         }
         
-        function getDays()
+        function setDays()
         {
             $this -> cid = date('d', $this -> checkInDate);
             $this -> cod = date('d', $this -> checkOutDate);
         }
         
-        function getMonths()
+        function setMonths()
         {
             $this -> cim = date('m', $this -> getCheckInDate());
             $this -> com = date('m', $this -> getCheckOutDate());
         }
         
-        function Number_of_years()
+        function setYears()
         {
-            
+            $this -> ciy = date('Y', $this -> getCheckInDate());
+            $this -> coy = date('Y', $this -> getCheckOutDate());
         }
         
         function getNum_of_days($m, $d, $y)
