@@ -46,9 +46,10 @@
             $this -> cod = date('d', $this -> checkOutDate);
         }
         
-        function Number_of_months()
+        function getMonths()
         {
-            
+            $this -> cim = date('m', $this -> getCheckInDate());
+            $this -> com = date('m', $this -> getCheckOutDate());
         }
         
         function Number_of_years()
