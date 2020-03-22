@@ -59,7 +59,20 @@
         {
             if($y > 0 && $m > 0 && $d > 0)
             {
-                return "Number of nights at which your accomodation spans: ". $y. " year(s) ".$m." month(s), ".$d." day(s)";
+                return "Number of nights at which your accomodation last is: ". $y. " year(s) ".$m." month(s), ".$d." day(s)";
+            }
+            
+            else if($y <= 0 && $m > 0 && $d > 0)
+            {
+                return "Number of nights at which your accomodation last is: ".$m." month(s), ".$d." day(s)";
+            }
+            
+            else if($y <= 0 && $m <= 0 && $d > 0)
+            {
+                return "Number of nights at which your accomodation will last is: ".$d." day(s)";
+            }
+            else {
+                return "invalid date was submitted";
             }
         }
     }
