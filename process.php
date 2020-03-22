@@ -34,5 +34,10 @@
         {
             return $this -> checkInDate;
         }
+        
+        function getCheckOutDate()
+        {
+            return $this -> checkOutDate;
+        }
     }
 ?>
