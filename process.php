@@ -7,37 +7,62 @@
      * @auther Le-Roy
      * 
      */
+     
+    $user_object;
+    if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['checkIn']) && isset($_POST['checkOut']) && isset($_POST['hotels']))
+     {
+         $name = $_POST['name'];
+         $surname = $_POST['surname'];
+         $email = $_POST['email'];
+         $checkIn = strtotime($_POST['checkIn']);
+         $checkOut = strtotime($_POST['checkOut']);
+         $hotels = $_POST['hotels'];
+         
+         $userObject = new User($name, $surname, $email, $checkIn, $checkOut, $hotels);
+         echo $userObject -> getUser();
+         echo $userObject -> getCheckInDate();
+         echo $userObject -> getCheckOutDate();
+         echo $userObject -> getHotels();
+     }
+
+
+    
+
 
     class User
     {
         public $name, $surname, $email, $checkInDate, $checkOutDate, $non, $hotelInfo_array, $hotel_array, $cim, $cid, $ciy ,$com, $cod, $coy= '';
         
-        function __construct($name, $surname, $email, $cid, $cod, $non, $hotelInfo_array, $hotel_array)
+        //class User constructor, with params
+        function __construct($name, $surname, $email, $cid, $cod, $hotel_array)
         {
             $this -> name = $name;
             $this -> surname = $surname;
             $this -> email = $email;
             $this -> checkInDate = $cid;
             $this -> checkOutDate = $cod;
-            $this -> non = $non;
-            $this -> hotelInfo_array = $hotelInfo_array;
             $this -> hotel_array = $hotel_array;
             
         }
         
+        //getUser returns name, surname, and email
         function getUser()
         {
-            return "<ul><li>Name: ".$this -> name."</li><li>Surname: ".$this -> name."</li><li>Email: ".$this -> name."</li></ul>";
+            return "<ul><li>Name: ".$this -> name."</li><li>Surname: ".$this -> surname."</li><li>Email: ".$this -> email."</li></ul>";
         }
         
+        //getCheckInDate returns the check in date
         function getCheckInDate()
         {
-            return $this -> checkInDate;
+            $checkIn = date('l-d-F', $this -> checkInDate);
+            return $checkIn;
         }
         
+        //getCheckOutDate returns the check out date
         function getCheckOutDate()
         {
-            return $this -> checkOutDate;
+            $checkOut = date('l-d-F', $this -> checkOutDate);
+            return $checkOut;
         }
         
         function setDays()
@@ -78,5 +103,19 @@
                 return "invalid date was submitted";
             }
         }
+        
+        function getHotels()
+        {
+            
+           $temp = implode(',', $this -> hotel_array);
+           $this -> hotel_array = explode(',', $temp);
+           
+           foreach($this -> hotel_array as $hotel)
+           {
+               echo "<br>".$hotel."<br>";
+           }
+           
+        }
+        
     }
 ?>
