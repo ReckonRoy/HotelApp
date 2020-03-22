@@ -10,7 +10,7 @@
 
     class User
     {
-        public $name, $surname, $email, $checkInDate, $checkOutDate, $non, $hotelInfo_array, $hotel_array, $m, $d, $y= '';
+        public $name, $surname, $email, $checkInDate, $checkOutDate, $non, $hotelInfo_array, $hotel_array, $cim, $cid, $ciy ,$com, $cod, $coy= '';
         
         function __construct($name, $surname, $email, $cid, $cod, $non, $hotelInfo_array, $hotel_array)
         {
@@ -40,9 +40,10 @@
             return $this -> checkOutDate;
         }
         
-        function Number_of_days()
+        function getDays()
         {
-            
+            $this -> cid = date('d', $this -> checkInDate);
+            $this -> cod = date('d', $this -> checkOutDate);
         }
         
         function Number_of_months()
