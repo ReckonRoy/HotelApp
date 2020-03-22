@@ -39,5 +39,28 @@
         {
             return $this -> checkOutDate;
         }
+        
+        function Number_of_days()
+        {
+            
+        }
+        
+        function Number_of_months()
+        {
+            
+        }
+        
+        function Number_of_years()
+        {
+            
+        }
+        
+        function getNum_of_days($m, $d, $y)
+        {
+            if($y > 0 && $m > 0 && $d > 0)
+            {
+                return "Number of nights at which your accomodation spans: ". $y. " year(s) ".$m." month(s), ".$d." day(s)";
+            }
+        }
     }
 ?>
