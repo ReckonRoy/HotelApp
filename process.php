@@ -22,7 +22,15 @@
          echo $userObject -> getUser();
          echo $userObject -> getCheckInDate();
          echo $userObject -> getCheckOutDate();
-         echo $userObject -> getHotels();
+         $userObject -> getHotels();
+         $month = $userObject -> setMonths();
+         echo "<br>";
+         echo $month;
+         $day = $userObject -> setDays();
+         echo $day."<br>";
+         $year = $userObject -> setYears();
+         echo $year."<br>";
+         echo $userObject -> getNum_of_days($month, $day, $year);
      }
 
 
@@ -44,6 +52,7 @@
             $this -> hotel_array = $hotel_array;
             
         }
+        
         
         //getUser returns name, surname, and email
         function getUser()
@@ -69,18 +78,22 @@
         {
             $this -> cid = date('d', $this -> checkInDate);
             $this -> cod = date('d', $this -> checkOutDate);
+            return ($this -> cod - $this -> cid);
         }
         
         function setMonths()
         {
-            $this -> cim = date('m', $this -> getCheckInDate());
-            $this -> com = date('m', $this -> getCheckOutDate());
+            $this -> cim = date('m', $this -> checkInDate);
+            $this -> com = date('m', $this -> checkOutDate);
+            return ($this -> com - $this -> cim);
         }
         
         function setYears()
         {
-            $this -> ciy = date('Y', $this -> getCheckInDate());
-            $this -> coy = date('Y', $this -> getCheckOutDate());
+            $this -> ciy = date('Y', $this -> checkInDate);
+            $this -> coy = date('Y', $this -> checkOutDate);
+            return ($this -> coy - $this -> ciy);
+            
         }
         
         function getNum_of_days($m, $d, $y)
@@ -107,12 +120,99 @@
         function getHotels()
         {
             
+            $this -> hotelInfo_array = array( 
+                'park' => array(
+                    'Hotel Name' => "Park Inn by Radisson Cape Town Foreshore",
+                    'parking' => "yes",
+                    'pool' => "yes",
+                    'gym' => "yes",
+                    'kitchen' => "no",
+                    'wifi' => "no",
+                    'breakfast' => "no",
+                    'air conditioning' => "yes",
+                    'total' => "2 222"
+                ),
+                
+                'mandela' => array(
+                    'Hotel Name' => "Mandela Rhodes Place Hotel",
+                    'parking' => "yes",
+                    'pool' => "yes",
+                    'gym' => "yes",
+                    'kitchen' => "yes",
+                    'breakfast' => "no", 
+                    'wifi' => "no",
+                    'air conditioning' => "yes",
+                    'total' => "2 428"
+                ),
+                'icon' => array(
+                    'Hotel Name' => "Icon Luxury Apartments",
+                    'parking' => "yes",
+                    'pool' => "yes",
+                    'gym' => "yes",
+                    'kitchen' => "yes",
+                    'wifi' => "no",
+                    'breakfast' => "no",
+                    'air conditioning' => "yes",
+                    'total' => "2 552"
+                ),
+                'taj' => array(
+                    'Hotel Name' => "Taj Cape Town",
+                    'parking' => "yes",
+                    'pool' => "yes",
+                    'gym' => "yes",
+                    'kitchen' => "no",
+                    'wifi' => "yes",
+                    'breakfast' => "yes",
+                    'air conditioning' => "yes",
+                    'total' => "5 646"
+                ),
+                'city' => array(
+                    'Hotel Name' => "City Lodge Hotel Victoria And Alfred Waterfront",
+                    'parking' => "yes",
+                    'pool' => "yes",
+                    'gym' => "yes",
+                    'kitchen' => "no",
+                    'wifi' => "no",
+                    'breakfast' => "no",
+                    'air conditioning' => "yes",
+                    'total' => "3 474"
+                ),
+                'southern' => array(
+                    'Hotel Name' => "Southern Sun Cape Sun",
+                    'parking' => "yes",
+                    'pool' => "yes",
+                    'gym' => "yes",
+                    'kitchen' => "no",
+                    'wifi' => "no",
+                    'breakfast' => "no",
+                    'air conditioning' => "yes",
+                    'total' => "4 590"
+                )
+            );
+            
            $temp = implode(',', $this -> hotel_array);
            $this -> hotel_array = explode(',', $temp);
            
-           foreach($this -> hotel_array as $hotel)
+           foreach($this -> hotelInfo_array as $hotel_key => $value)
            {
-               echo "<br>".$hotel."<br>";
+               
+               foreach($this -> hotel_array as $hotel_value_j)
+               {
+                   
+                   if($hotel_key == $hotel_value_j)
+                    {
+                        foreach($value as $value_key => $this_val)
+                        {
+                            echo <<<_END
+                                <div>
+                                    $value_key $this_val;
+                                </div>   
+                                _END;
+                            
+                        }
+                    }
+                    
+               }
            }
            
         }
