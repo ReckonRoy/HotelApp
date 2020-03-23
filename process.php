@@ -273,20 +273,16 @@ if(isset($_POST['hotel']))
 	?>
 <form action="process.php" method="POST">
 <select name="hotel" size="1" >
-	<?php 
-
-	
-	foreach($hotels as $hotel_value_j)
-    {
-        $_SESSION['hotel'] = $hotel_value_j;
-        $hotel_session =  $_SESSION['hotel'];
+<?php 
     
-echo
-<<<_END
-<option value="$hotel_session">$hotel_session</option>
-_END;
-    }
-	?>
+foreach ($_SESSION['hotels'] as $val)
+{
+    
+?>
+<option value="<?php echo $vals; ?>"><?php echo $val; ?></option>
+<?php 
+}
+?>
 </select>
 
 <input type="submit" value="Book Now">
