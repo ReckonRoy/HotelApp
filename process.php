@@ -39,8 +39,8 @@
          
          $_SESSION['nod'] = $userObject -> getNum_of_days($month, $day, $year);
         
-     
-
+         $_SESSION['ci'] = $userObject -> getCheckInDate();
+         $_SESSION['co'] = $userObject -> getCheckOutDate();
 
     
 
