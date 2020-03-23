@@ -1,3 +1,20 @@
+<?php session_start();?>
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<style type="text/css">
+
+*
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+</style>
+</head>
+<body>
+
 <?php
     /*
      * process.php handles the processing of all user inputs, thats retrieving 
@@ -7,31 +24,22 @@
      * @auther Le-Roy
      * 
      */
-     
-    $user_object;
-    if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['checkIn']) && isset($_POST['checkOut']) && isset($_POST['hotels']))
-     {
-         $name = $_POST['name'];
-         $surname = $_POST['surname'];
-         $email = $_POST['email'];
-         $checkIn = strtotime($_POST['checkIn']);
-         $checkOut = strtotime($_POST['checkOut']);
-         $hotels = $_POST['hotels'];
+
+         $userObject = new User($_SESSION['name_s'],  $_SESSION['surname_s'], $_SESSION['email_s'], $_SESSION['checkIn_s'], $_SESSION['checkOut_s'], $_SESSION['hotels']);
          
-         $userObject = new User($name, $surname, $email, $checkIn, $checkOut, $hotels);
          echo $userObject -> getUser();
          echo $userObject -> getCheckInDate();
          echo $userObject -> getCheckOutDate();
-         $userObject -> getHotels();
+         
+         echo $userObject -> getHotels();
+         
          $month = $userObject -> getMonths();
-         echo "<br>";
-         echo $month."<br>";
          $day = $userObject -> getDays();
-         echo $day."<br>";
          $year = $userObject -> getYears();
-         echo $year."<br>";
-         echo $userObject -> getNum_of_days($month, $day, $year);
-     }
+         
+         $_SESSION['nod'] = $userObject -> getNum_of_days($month, $day, $year);
+         $nod = $_SESSION['nod'];
+     
 
 
     
@@ -64,14 +72,14 @@
         function getCheckInDate()
         {
             $checkIn = date('l-d-F', $this -> checkInDate);
-            return $checkIn;
+            return "Check In Date: ".$checkIn."<br>";
         }
         
         //getCheckOutDate returns the check out date
         function getCheckOutDate()
         {
             $checkOut = date('l-d-F', $this -> checkOutDate);
-            return $checkOut;
+            return "Check Out Date: ".$checkOut."<br>";
         }
         
         function getDays()
@@ -136,7 +144,7 @@
         {
             
             $this -> hotelInfo_array = array( 
-                'park' => array(
+                'Park Inn by Radisson Cape Town Foreshore' => array(
                     'Hotel Name' => "Park Inn by Radisson Cape Town Foreshore",
                     'parking' => "yes",
                     'pool' => "yes",
@@ -148,7 +156,7 @@
                     'total' => 2222
                 ),
                 
-                'mandela' => array(
+                'Mandela Rhodes Place Hotel' => array(
                     'Hotel Name' => "Mandela Rhodes Place Hotel",
                     'parking' => "yes",
                     'pool' => "yes",
@@ -159,7 +167,7 @@
                     'air conditioning' => "yes",
                     'total' => 2428
                 ),
-                'icon' => array(
+                'Icon Luxury Apartments' => array(
                     'Hotel Name' => "Icon Luxury Apartments",
                     'parking' => "yes",
                     'pool' => "yes",
@@ -170,7 +178,7 @@
                     'air conditioning' => "yes",
                     'total' => 2552
                 ),
-                'taj' => array(
+                'Taj Cape Town' => array(
                     'Hotel Name' => "Taj Cape Town",
                     'parking' => "yes",
                     'pool' => "yes",
@@ -181,7 +189,7 @@
                     'air conditioning' => "yes",
                     'total' => 5646
                 ),
-                'city' => array(
+                'City Lodge Hotel Victoria And Alfred Waterfront' => array(
                     'Hotel Name' => "City Lodge Hotel Victoria And Alfred Waterfront",
                     'parking' => "yes",
                     'pool' => "yes",
@@ -192,7 +200,7 @@
                     'air conditioning' => "yes",
                     'total' => 3474
                 ),
-                'southern' => array(
+                'Southern Sun Cape Sun' => array(
                     'Hotel Name' => "Southern Sun Cape Sun",
                     'parking' => "yes",
                     'pool' => "yes",
@@ -226,14 +234,16 @@
                                    echo $this_val = ((365 * $this -> getYears()) + $this -> getMonths() + $this -> getDays()) * $this_val;
                                 }else 
                                 {
-                                    echo $this_val = ($this -> getMonths() + $this -> getDays()) * $this_val;
+                                   echo $this_val = ($this -> getMonths() + $this -> getDays()) * $this_val;
                                 }
                             }
-                            echo <<<_END
-                                <div>
-                                    $value_key $this_val;
-                                </div>   
-                                _END;
+                            
+ echo <<<_END
+<div>
+<ul><li>$value_key $this_val</li></ul>
+</div>
+ 
+_END;
                             
                         }
                     }
@@ -245,3 +255,42 @@
         
     }
 ?>
+<?php 
+if(isset($_POST['hotel']))
+	{
+	   $hotel_name = $_POST['hotel'];
+	   
+	   
+	   echo $name;
+	   echo $surname;
+	   echo $email;
+	   echo $hotel_name."<br>";
+	   echo $checkIn;
+	   echo $checkOut;
+	   echo $nod;
+	}
+	
+	?>
+<form action="process.php" method="POST">
+<select name="hotel" size="1" >
+	<?php 
+
+	
+	foreach($hotels as $hotel_value_j)
+    {
+        $_SESSION['hotel'] = $hotel_value_j;
+        $hotel_session =  $_SESSION['hotel'];
+    
+echo
+<<<_END
+<option value="$hotel_session">$hotel_session</option>
+_END;
+    }
+	?>
+</select>
+
+<input type="submit" value="Book Now">
+</form>
+
+</body>
+</html>  
