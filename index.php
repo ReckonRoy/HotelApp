@@ -135,7 +135,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
          <div class="container">
              <div class="hotel_reserve_box card">
          <h3> Hotel Reservation Form </h3><br>
-         <form action="reservation.php" method="POST" autocomplete="off" onsubmit="return validate(this)">
+         <form action="index.php" method="POST" autocomplete="off" onsubmit="return validate(this)">
              <div class="form-group">
                 <label for="name">First Name: </label><br>
 				<input type="text" name="name" placeholder="Enter Name:" class="text">	
