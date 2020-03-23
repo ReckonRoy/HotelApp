@@ -23,12 +23,12 @@
          echo $userObject -> getCheckInDate();
          echo $userObject -> getCheckOutDate();
          $userObject -> getHotels();
-         $month = $userObject -> setMonths();
+         $month = $userObject -> getMonths();
          echo "<br>";
-         echo $month;
-         $day = $userObject -> setDays();
+         echo $month."<br>";
+         $day = $userObject -> getDays();
          echo $day."<br>";
-         $year = $userObject -> setYears();
+         $year = $userObject -> getYears();
          echo $year."<br>";
          echo $userObject -> getNum_of_days($month, $day, $year);
      }
@@ -74,21 +74,36 @@
             return $checkOut;
         }
         
-        function setDays()
+        function getDays()
         {
             $this -> cid = date('d', $this -> checkInDate);
             $this -> cod = date('d', $this -> checkOutDate);
-            return ($this -> cod - $this -> cid);
+            
+            if($this -> cid > $this -> cod)
+            {
+                $new_cid =  $this -> cid - $this -> cod;
+                return (($this -> cod + $new_cid) - $new_cid);
+            }else{
+                return ($this -> cod - $this -> cid);
+            }
         }
         
-        function setMonths()
+        function getMonths()
         {
             $this -> cim = date('m', $this -> checkInDate);
             $this -> com = date('m', $this -> checkOutDate);
-            return ($this -> com - $this -> cim);
+            
+            if($this -> cim > $this -> com)
+            {
+                $new_cim =  $this -> cim - $this -> com;
+                return (($this -> com + $new_cim) - $new_cim);
+            }else{
+                return ($this -> com - $this -> cim);
+            }
         }
         
-        function setYears()
+        
+        function getYears()
         {
             $this -> ciy = date('Y', $this -> checkInDate);
             $this -> coy = date('Y', $this -> checkOutDate);
@@ -100,12 +115,12 @@
         {
             if($y > 0 && $m > 0 && $d > 0)
             {
-                return "Number of nights at which your accomodation last is: ". $y. " year(s) ".$m." month(s), ".$d." day(s)";
+                return "Number of nights at which your accomodation will last is: ". $y. " year(s) ".$m." month(s), ".$d." day(s)";
             }
             
             else if($y <= 0 && $m > 0 && $d > 0)
             {
-                return "Number of nights at which your accomodation last is: ".$m." month(s), ".$d." day(s)";
+                return "Number of nights at which your accomodation will last is: ".$m." month(s), ".$d." day(s)";
             }
             
             else if($y <= 0 && $m <= 0 && $d > 0)
@@ -130,7 +145,7 @@
                     'wifi' => "no",
                     'breakfast' => "no",
                     'air conditioning' => "yes",
-                    'total' => "2 222"
+                    'total' => 2222
                 ),
                 
                 'mandela' => array(
@@ -142,7 +157,7 @@
                     'breakfast' => "no", 
                     'wifi' => "no",
                     'air conditioning' => "yes",
-                    'total' => "2 428"
+                    'total' => 2428
                 ),
                 'icon' => array(
                     'Hotel Name' => "Icon Luxury Apartments",
@@ -153,7 +168,7 @@
                     'wifi' => "no",
                     'breakfast' => "no",
                     'air conditioning' => "yes",
-                    'total' => "2 552"
+                    'total' => 2552
                 ),
                 'taj' => array(
                     'Hotel Name' => "Taj Cape Town",
@@ -164,7 +179,7 @@
                     'wifi' => "yes",
                     'breakfast' => "yes",
                     'air conditioning' => "yes",
-                    'total' => "5 646"
+                    'total' => 5646
                 ),
                 'city' => array(
                     'Hotel Name' => "City Lodge Hotel Victoria And Alfred Waterfront",
@@ -175,7 +190,7 @@
                     'wifi' => "no",
                     'breakfast' => "no",
                     'air conditioning' => "yes",
-                    'total' => "3 474"
+                    'total' => 3474
                 ),
                 'southern' => array(
                     'Hotel Name' => "Southern Sun Cape Sun",
@@ -186,7 +201,7 @@
                     'wifi' => "no",
                     'breakfast' => "no",
                     'air conditioning' => "yes",
-                    'total' => "4 590"
+                    'total' => 4590
                 )
             );
             
@@ -203,6 +218,11 @@
                     {
                         foreach($value as $value_key => $this_val)
                         {
+                            
+                            if($value_key == "total")
+                            {
+                                if($this -> )
+                            }
                             echo <<<_END
                                 <div>
                                     $value_key $this_val;
