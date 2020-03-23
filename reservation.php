@@ -1,3 +1,28 @@
+<?php 
+session_start();
+
+if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['checkIn']) && isset($_POST['checkOut']) && isset($_POST['hotels']))
+     {
+         $_SESSION['name_s'] = $_POST['name'];
+         
+         
+         $_SESSION[surname_s] = $_POST['surname'];
+         
+         $_SESSION['email_s'] = $_POST['email'];
+         
+         $_SESSION['checkIn_s'] = strtotime($_POST['checkIn']);
+         
+         $_SESSION['checkOut_s'] = strtotime($_POST['checkOut']);
+         
+         $_SESSION['hotels'] = $_POST['hotels'];
+         
+         header('Location: process.php');
+         
+         $_SESSION['cost'];
+         
+         
+     }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -110,7 +135,7 @@
          <div class="container">
              <div class="hotel_reserve_box card">
          <h3> Hotel Reservation Form </h3><br>
-         <form action="process.php" method="POST" autocomplete="off">
+         <form action="reservation.php" method="POST" autocomplete="off" onsubmit="return validate(this)">
              <div class="form-group">
                 <label for="name">First Name: </label><br>
 				<input type="text" name="name" placeholder="Enter Name:" class="text">	
@@ -135,12 +160,12 @@
              <div class="form-group">
                 <table class="table">
 				<tr><th colspan="3"><center>Select Your Hotels</center></th><tr>
-				<tr><td><img src="img/familyRoom.jpg" width="100px" height="100px"></td><td>Park Inn by Radisson Cape Town Foreshore</td><td><input type="checkbox"></td></tr>
-				<tr><td><img src="img/grandRoom.jpg" width="100px" height="100px"></td><td>Mandela Rhodes Place Hotel</td><td><input type="checkbox"></td></tr>
-				<tr><td><img src="img/banner.jpg" width="100px" height="100px"></td><td>Icon Luxury Apartments</td><td><input type="checkbox"></td></tr>
-				<tr><td><img src="img/specialRoom.jpg" width="100px" height="100px"></td><td>Taj Cape Town</td><td><input type="checkbox"></td></tr>
-				<tr><td><img src="img/two.jpg" width="100px" height="100px"></td><td>City Lodge Hotel Victoria And Waterfront</td><td><input type="checkbox"></td></tr>
-				<tr><td><img src="img/familyRoom.jpg" width="100px" height="100px"></td><td>Southern Sun Cape Sun</td><td><input type="checkbox"></td></tr>
+				<tr><td><img src="img/familyRoom.jpg" width="100px" height="100px"></td><td>Park Inn by Radisson Cape Town Foreshore</td><td><input type="checkbox" name="hotels[]" value="Park Inn by Radisson Cape Town Foreshore"></td></tr>
+				<tr><td><img src="img/grandRoom.jpg" width="100px" height="100px"></td><td>Mandela Rhodes Place Hotel</td><td><input type="checkbox" name="hotels[]" value="Mandela Rhodes Place Hotel"></td></tr>
+				<tr><td><img src="img/banner.jpg" width="100px" height="100px"></td><td>Icon Luxury Apartments</td><td><input type="checkbox" name="hotels[]" value="Icon Luxury Apartments"></td></tr>
+				<tr><td><img src="img/specialRoom.jpg" width="100px" height="100px"></td><td>Taj Cape Town</td><td><input type="checkbox" name="hotels[]" value="Taj Cape Town"></td></tr>
+				<tr><td><img src="img/two.jpg" width="100px" height="100px"></td><td>City Lodge Hotel Victoria And Waterfront</td><td><input type="checkbox" name="hotels[]" value="City Lodge Hotel Victoria And Alfred Waterfront"></td></tr>
+				<tr><td><img src="img/familyRoom.jpg" width="100px" height="100px"></td><td>Southern Sun Cape Sun</td><td><input type="checkbox" name="hotels[]" value="Southern Sun Cape Sun"></td></tr>
 				
 				</table>
              </div><br>
@@ -187,7 +212,7 @@
     <script type="text/javascript" src="js/script.js"></script>
 
     <script type="text/javascript">
-         <script>
+        
         function finalCost(){
             var roomType = document.getElementById("room_type").value;
             var roomNum = document.getElementById("room_number").value;
@@ -201,6 +226,8 @@
         }
     </script>
 
+
+	<script type="text/javascript" src="js/external.js">
     </script>
  
     </body>

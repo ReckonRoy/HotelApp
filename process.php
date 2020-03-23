@@ -38,7 +38,7 @@
          $year = $userObject -> getYears();
          
          $_SESSION['nod'] = $userObject -> getNum_of_days($month, $day, $year);
-         $nod = $_SESSION['nod'];
+        
      
 
 
@@ -231,10 +231,10 @@
                             {
                                 if($this -> getYears() >= 1)
                                 {
-                                   echo $this_val = ((365 * $this -> getYears()) + $this -> getMonths() + $this -> getDays()) * $this_val;
+                                    $_SESSION['cost'] = ((365 * $this -> getYears()) + $this -> getMonths() + $this -> getDays()) * $this_val;
                                 }else 
                                 {
-                                   echo $this_val = ($this -> getMonths() + $this -> getDays()) * $this_val;
+                                    $_SESSION['cost'] = ($this -> getMonths() + $this -> getDays()) * $this_val;
                                 }
                             }
                             
@@ -256,30 +256,19 @@ _END;
     }
 ?>
 <?php 
-if(isset($_POST['hotel']))
-	{
-	   $hotel_name = $_POST['hotel'];
-	   
-	   
-	   echo $name;
-	   echo $surname;
-	   echo $email;
-	   echo $hotel_name."<br>";
-	   echo $checkIn;
-	   echo $checkOut;
-	   echo $nod;
-	}
-	
+
 	?>
-<form action="process.php" method="POST">
+<form action="success.php" method="POST">
 <select name="hotel" size="1" >
 <?php 
     
+
+
 foreach ($_SESSION['hotels'] as $val)
 {
     
 ?>
-<option value="<?php echo $vals; ?>"><?php echo $val; ?></option>
+<option value="<?php echo $val; ?>"><?php echo $val; ?></option>
 <?php 
 }
 ?>
