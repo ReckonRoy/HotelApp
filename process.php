@@ -221,7 +221,13 @@
                             
                             if($value_key == "total")
                             {
-                                if($this -> )
+                                if($this -> getYears() >= 1)
+                                {
+                                   echo $this_val = ((365 * $this -> getYears()) + $this -> getMonths() + $this -> getDays()) * $this_val;
+                                }else 
+                                {
+                                    echo $this_val = ($this -> getMonths() + $this -> getDays()) * $this_val;
+                                }
                             }
                             echo <<<_END
                                 <div>
