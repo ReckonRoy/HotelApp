@@ -88,12 +88,13 @@ li
          $_SESSION['ci'] = $userObject -> getCheckInDate();
          $_SESSION['co'] = $userObject -> getCheckOutDate();
 		 $_SESSION['array'] = $userObject -> hotelInfo_array;
+		 $_SESSION['hotel_cost'] = $userObject -> hotel_cost;
     
 
 
     class User
     {
-        public $name, $surname, $email, $checkInDate, $checkOutDate, $non, $hotelInfo_array, $hotel_array, $cim, $cid, $ciy ,$com, $cod, $coy= '';
+        public $name, $surname, $email, $checkInDate, $checkOutDate, $non, $hotelInfo_array, $hotel_cost, $hotel_array, $cim, $cid, $ciy ,$com, $cod, $coy= '';
         
         //class User constructor, with params
         function __construct($name, $surname, $email, $cid, $cod, $hotel_array)
@@ -188,7 +189,32 @@ li
         
         function getHotels()
         {
-            
+            $this -> hotel_cost = array( 
+                'Park Inn by Radisson Cape Town Foreshore' => array(
+                    'total' => 2222
+                ),
+                
+                'Mandela Rhodes Place Hotel' => array(
+                    'total'  => 2428
+                ),
+				
+                'Icon Luxury Apartments' => array(
+                    'total' => 2552 
+                ),
+				
+                'Taj Cape Town' => array(
+                    'total' => 5646
+                ),
+				
+                'City Lodge Hotel Victoria And Alfred Waterfront' => array(
+                    'total' => 3474
+                ),
+				
+                'Southern Sun Cape Sun' => array(
+                    'total' => 4590
+                )
+            );
+			
             $this -> hotelInfo_array = array( 
                 'Park Inn by Radisson Cape Town Foreshore' => array(
                     '<div class="div_hotel"><table cellspacing="10"><tr><th scope="row">Hotel Name: </th>' => "<td>Park Inn by Radisson Cape Town Foreshore</tr></td>",
@@ -199,7 +225,7 @@ li
                     '<tr><th scope="row">Wifi: </th>' => "<td>No</td></tr>",
                     '<tr><th scope="row">Breakfast: </th>' => "<td>No</td></tr>",
                     '<tr><th scope="row">Air conditioning: </th>' => "<td>yes</td></tr>",
-                    '<tr><th scope="row">total</th>' => "<td>2222</td></tr></table></div>"
+                    '<tr><th scope="row">total' => "<td> R2222 </td></tr></table></div>"
                 ),
                 
                 'Mandela Rhodes Place Hotel' => array(
@@ -211,7 +237,7 @@ li
                     '<tr><th scope="row">breakfast: </th>' => "<td>no</td></tr>", 
                     '<tr><th scope="row">wifi: </th>' => "<td>no</td></tr>",
                     '<tr><th scope="row">air conditioning: </th>' => "<td>yes</td></tr>",
-                    '<tr><th scope="row">total: </th>' => "<td>2428</td></tr></table></div>"
+                    '<tr><th scope="row"> total </th>' => "<td> R2428 </td></tr></table></div>"
                 ),
                 'Icon Luxury Apartments' => array(
                     '<div class="div_hotel"><table cellspacing="10"><tr><td>Hotel Name: </td>' => "<td>Icon Luxury Apartments</td></tr>",
@@ -222,7 +248,7 @@ li
                     '<tr><th scope="row">wifi</th>' => "<td>no</td></tr>",
                     '<tr><th scope="row">breakfast</th>' => "<td>no</td></tr>",
                     '<tr><th scope="row">air conditioning</th>' => "<td>yes</td></tr>",
-                    '<tr><th scope="row">total</th>' => "<td>2552</td></tr></table></div>"
+                    '<tr><th scope="row"> total </th>' => "<td> R2552 </td></tr></table></div>"
                 ),
                 'Taj Cape Town' => array(
                     '<div class="div_hotel"><table cellspacing="10"><tr><td>Hotel Name: </td>' => "<td>Taj Cape Town</td></tr>",
@@ -233,7 +259,7 @@ li
                     '<tr><th scope="row">wifi</th>' => "<td>yes</td></tr>",
                     '<tr><th scope="row">breakfast</th>' => "<td>yes</td></tr>",
                     '<tr><th scope="row">air conditioning</th>' => "<td>yes</td></tr>",
-                    '<tr><th scope="row">total</th>' => "<td>5646</td></tr></table></div>"
+                    '<tr><th scope="row">total</th>' => "<td>R5646</td></tr></table></div>"
                 ),
                 'City Lodge Hotel Victoria And Alfred Waterfront' => array(
                     '<div class="div_hotel"><table cellspacing="10"><tr><td>Hotel Name: </td>' => "<td>City Lodge Hotel Victoria And Alfred Waterfront</td></tr>",
@@ -244,7 +270,7 @@ li
                     '<tr><th scope="row">wifi: </th>' => "<td>no</td></tr>",
                     '<tr><th scope="row">breakfast: </th>' => "<td>no</td></tr>",
                     '<tr><th scope="row">air conditioning: </th' => "<td>yes</td></tr>",
-                    '<tr><th scope="row">total </th>' => "<td>3474</td></tr></table></div>"
+                    '<tr><th scope="row">total</th>' => "<td>R3474</td></tr></table></div>"
                 ),
                 'Southern Sun Cape Sun' => array(
                     '<div class="div_hotel"><table cellspacing="10"><tr><td>Hotel Name: </td>' => "<td>Southern Sun Cape Sun</td></tr>",
@@ -255,7 +281,7 @@ li
                     '<tr><th scope="row">wifi: </th>' => "<td>no</td></tr>",
                     '<tr><th scope="row">breakfast: </th>' => "<td>no</td></tr>",
                     '<tr><th scope="row">air conditioning: </th>' => "<td>yes</td></tr>",
-                    '<tr><th scope="row">total</th>' => "<td>4590</td></tr></table></div>"
+                    '<tr><th scope="row">total</th>' => "<td>R4590</td></tr></table></div>"
                 )
             );
             

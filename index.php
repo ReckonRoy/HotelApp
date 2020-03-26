@@ -19,6 +19,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 		 $_SESSION['month'];
 		 $_SESSION['day'];
 		 $_SESSION['year'];
+		 $_SESSION['cost'];
          header('Location: process.php');
          
          

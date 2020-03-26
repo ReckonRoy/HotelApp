@@ -13,7 +13,7 @@ if(isset($_POST['hotel']))
     echo $_POST['hotel']."<br>";
     
 	
-	foreach($_SESSION['array'] as $key => $array)
+	foreach($_SESSION['hotel_cost'] as $key => $array)
 	{
 		if( $key == $_POST['hotel'])
 		{
@@ -24,7 +24,7 @@ if(isset($_POST['hotel']))
 					
 					if($_SESSION['year'] > 1)
 							  {
-                                $_SESSION['cost'] = (365 +  $_SESSION['month'] + $_SESSION['day'])* $value;
+								$_SESSION['cost'] = (365 +  $_SESSION['month'] + $_SESSION['day'])* $value;
                               }else
 							  {
 								$_SESSION['cost'] = ($_SESSION['month'] + $_SESSION['day'] )* $value;  
@@ -52,11 +52,11 @@ function sendmail($param, $param2){
             //Server settings live server
             $param->SMTPDebug = 0;                          // Enable verbose debug output
             $param->isSMTP();                               // Set mailer to use SMTP
-            $param->Host       = '262e5937a9-aa2319@inbox.mailtrap.io';  		// Specify main and backup SMTP servers
+            $param->Host       = 'smtp.mailtrap.io';  		// Specify main and backup SMTP servers
             $param->SMTPAuth   = true;                      // Enable SMTP authentication
             $param->Username   = 'f4851ad2013ba7';			// SMTP username
             $param->Password   = '3d0f737c43567f';            // SMTP password
-            $param->SMTPSecure = 'ssl';                     // Enable TLS encryption, `ssl` also accepted
+            $param->SMTPSecure = 'TLS';                     // Enable TLS encryption, `ssl` also accepted
             $param->Port       = 2525;                       // TCP port to connect to
             
             //Recipients
