@@ -36,16 +36,22 @@
 .div_hotel
 {
 	border: 1px solid #3d1b89;
-	background-color: yellow;
+	background-color: white;
 	width: 75%;
 	margin-bottom: 5%;
 	padding: 3%;
+	padding-left: 1%;
+	padding-bottom: 0;
+	padding-top: 0;
 }
 
 .div_hotel table
 {
 	cellpadding: 30;
-	border: 1px solid black;
+	padding-left: 0px;
+	background-color: purple;
+	color: white;
+	width: 50%;
 }
 
 li
