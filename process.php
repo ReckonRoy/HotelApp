@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
+
+<link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet">
 <style type="text/css">
 
 *
@@ -11,10 +13,49 @@
     margin: 0px;
 }
 
+#container
+{
+    width: 80%;
+    background-color: white;
+    padding: 5%;
+	margin: 0 auto;
+	font-family: 'Baloo 2', cursive;
+	
+}
+
+#user
+{
+	background-color: 	#ffeab4;
+	width: 75%;
+	padding: 3%;
+	margin-bottom: 5%;
+	color: grey;
+	border: 1px solid gray;
+}
+
+.div_hotel
+{
+	border: 1px solid #3d1b89;
+	background-color: yellow;
+	width: 75%;
+	margin-bottom: 5%;
+	padding: 3%;
+}
+
+.div_hotel table
+{
+	cellpadding: 30;
+	border: 1px solid black;
+}
+
+li
+{
+	list-style: none;
+}
 </style>
 </head>
 <body>
-
+<div id="container">
 <?php
     /*
      * process.php handles the processing of all user inputs, thats retrieving 
@@ -34,14 +75,19 @@
          echo $userObject -> getHotels();
          
          $month = $userObject -> getMonths();
+		 $_SESSION['month'] = $month;
+		 
          $day = $userObject -> getDays();
+		 $_SESSION['day'] = $day;
+		 
          $year = $userObject -> getYears();
+		 $_SESSION['year'] = $year;
          
          $_SESSION['nod'] = $userObject -> getNum_of_days($month, $day, $year);
         
          $_SESSION['ci'] = $userObject -> getCheckInDate();
          $_SESSION['co'] = $userObject -> getCheckOutDate();
-
+		 $_SESSION['array'] = $userObject -> hotelInfo_array;
     
 
 
@@ -65,7 +111,7 @@
         //getUser returns name, surname, and email
         function getUser()
         {
-            return "<ul><li>Name: ".$this -> name."</li><li>Surname: ".$this -> surname."</li><li>Email: ".$this -> email."</li></ul>";
+            return "<div id=\"user\"><ul><li>Name: ".$this -> name."</li><li>Surname: ".$this -> surname."</li><li>Email: ".$this -> email."</li></ul>";
         }
         
         //getCheckInDate returns the check in date
@@ -79,7 +125,7 @@
         function getCheckOutDate()
         {
             $checkOut = date('l-d-F', $this -> checkOutDate);
-            return "Check Out Date: ".$checkOut."<br>";
+            return "Check Out Date: ".$checkOut."<br></div>";
         }
         
         function getDays()
@@ -145,71 +191,71 @@
             
             $this -> hotelInfo_array = array( 
                 'Park Inn by Radisson Cape Town Foreshore' => array(
-                    'Hotel Name' => "Park Inn by Radisson Cape Town Foreshore",
-                    'parking' => "yes",
-                    'pool' => "yes",
-                    'gym' => "yes",
-                    'kitchen' => "no",
-                    'wifi' => "no",
-                    'breakfast' => "no",
-                    'air conditioning' => "yes",
-                    'total' => 2222
+                    '<div class="div_hotel"><table cellspacing="10"><tr><th scope="row">Hotel Name: </th>' => "<td>Park Inn by Radisson Cape Town Foreshore</tr></td>",
+                    '<tr><th scope="row">Parking: </th>' => "<td>Yes</td></tr>",
+                    '<tr><th scope="row">Pool: </th>' => "<td>Yes</td></tr>",
+                    '<tr><th scope="row">Gym: </th>' => "<td>Yes</td></tr>",
+                    '<tr><th scope="row">Kitchen: </th>' => "<td>No</td></tr>",
+                    '<tr><th scope="row">Wifi: </th>' => "<td>No</td></tr>",
+                    '<tr><th scope="row">Breakfast: </th>' => "<td>No</td></tr>",
+                    '<tr><th scope="row">Air conditioning: </th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">total</th>' => "<td>2222</td></tr></table></div>"
                 ),
                 
                 'Mandela Rhodes Place Hotel' => array(
-                    'Hotel Name' => "Mandela Rhodes Place Hotel",
-                    'parking' => "yes",
-                    'pool' => "yes",
-                    'gym' => "yes",
-                    'kitchen' => "yes",
-                    'breakfast' => "no", 
-                    'wifi' => "no",
-                    'air conditioning' => "yes",
-                    'total' => 2428
+                    '<div class="div_hotel"><table cellspacing="10"><tr><th scope="row">Hotel Name: </th>' => "<td>Mandela Rhodes Place Hotel</td></tr>",
+                    '<tr><th scope="row">parking: </th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">pool: </th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">gym: </th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">kitchen: </th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">breakfast: </th>' => "<td>no</td></tr>", 
+                    '<tr><th scope="row">wifi: </th>' => "<td>no</td></tr>",
+                    '<tr><th scope="row">air conditioning: </th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">total: </th>' => "<td>2428</td></tr></table></div>"
                 ),
                 'Icon Luxury Apartments' => array(
-                    'Hotel Name' => "Icon Luxury Apartments",
-                    'parking' => "yes",
-                    'pool' => "yes",
-                    'gym' => "yes",
-                    'kitchen' => "yes",
-                    'wifi' => "no",
-                    'breakfast' => "no",
-                    'air conditioning' => "yes",
-                    'total' => 2552
+                    '<div class="div_hotel"><table cellspacing="10"><tr><td>Hotel Name: </td>' => "<td>Icon Luxury Apartments</td></tr>",
+                    '<tr><th scope="row">parking</th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">pool</th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">gym</th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">kitchen</th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">wifi</th>' => "<td>no</td></tr>",
+                    '<tr><th scope="row">breakfast</th>' => "<td>no</td></tr>",
+                    '<tr><th scope="row">air conditioning</th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">total</th>' => "<td>2552</td></tr></table></div>"
                 ),
                 'Taj Cape Town' => array(
-                    'Hotel Name' => "Taj Cape Town",
-                    'parking' => "yes",
-                    'pool' => "yes",
-                    'gym' => "yes",
-                    'kitchen' => "no",
-                    'wifi' => "yes",
-                    'breakfast' => "yes",
-                    'air conditioning' => "yes",
-                    'total' => 5646
+                    '<div class="div_hotel"><table cellspacing="10"><tr><td>Hotel Name: </td>' => "<td>Taj Cape Town</td></tr>",
+                    '<tr><th scope="row">parking</th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">pool</th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">gym</th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">kitchen</th>' => "<td>no</td></tr>",
+                    '<tr><th scope="row">wifi</th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">breakfast</th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">air conditioning</th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">total</th>' => "<td>5646</td></tr></table></div>"
                 ),
                 'City Lodge Hotel Victoria And Alfred Waterfront' => array(
-                    'Hotel Name' => "City Lodge Hotel Victoria And Alfred Waterfront",
-                    'parking' => "yes",
-                    'pool' => "yes",
-                    'gym' => "yes",
-                    'kitchen' => "no",
-                    'wifi' => "no",
-                    'breakfast' => "no",
-                    'air conditioning' => "yes",
-                    'total' => 3474
+                    '<div class="div_hotel"><table cellspacing="10"><tr><td>Hotel Name: </td>' => "<td>City Lodge Hotel Victoria And Alfred Waterfront</td></tr>",
+                    '<tr><th scope="row">parking: </th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">pool: </th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">gym: </th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">kitchen: </th>' => "<td>no</td></tr>",
+                    '<tr><th scope="row">wifi: </th>' => "<td>no</td></tr>",
+                    '<tr><th scope="row">breakfast: </th>' => "<td>no</td></tr>",
+                    '<tr><th scope="row">air conditioning: </th' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">total </th>' => "<td>3474</td></tr></table></div>"
                 ),
                 'Southern Sun Cape Sun' => array(
-                    'Hotel Name' => "Southern Sun Cape Sun",
-                    'parking' => "yes",
-                    'pool' => "yes",
-                    'gym' => "yes",
-                    'kitchen' => "no",
-                    'wifi' => "no",
-                    'breakfast' => "no",
-                    'air conditioning' => "yes",
-                    'total' => 4590
+                    '<div class="div_hotel"><table cellspacing="10"><tr><td>Hotel Name: </td>' => "<td>Southern Sun Cape Sun</td></tr>",
+                    '<tr><th scope="row">parking: </th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">pool: </th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">gym: </th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">kitchen: </th>' => "<td>no</td></tr>",
+                    '<tr><th scope="row">wifi: </th>' => "<td>no</td></tr>",
+                    '<tr><th scope="row">breakfast: </th>' => "<td>no</td></tr>",
+                    '<tr><th scope="row">air conditioning: </th>' => "<td>yes</td></tr>",
+                    '<tr><th scope="row">total</th>' => "<td>4590</td></tr></table></div>"
                 )
             );
             
@@ -227,17 +273,6 @@
                         foreach($value as $value_key => $this_val)
                         {
                             
-                            if($value_key == "total")
-                            {
-                                if($this -> getYears() >= 1)
-                                {
-                                    $_SESSION['cost'] = ((365 * $this -> getYears()) + $this -> getMonths() + $this -> getDays()) * $this_val;
-                                }else 
-                                {
-                                    $_SESSION['cost'] = ($this -> getMonths() + $this -> getDays()) * $this_val;
-                                }
-                            }
-                            
  echo <<<_END
 <div>
 <ul><li>$value_key $this_val</li></ul>
@@ -250,15 +285,15 @@ _END;
                     
                }
            }
-           
         }
         
     }
 ?>
-<?php 
 
-	?>
+<div id="form">
+<p>
 <form action="success.php" method="POST">
+
 <select name="hotel" size="1" >
 <?php 
     
@@ -273,9 +308,13 @@ foreach ($_SESSION['hotels'] as $val)
 }
 ?>
 </select>
-
+</p>
+<p>
 <input type="submit" value="Book Now">
+</p>
 </form>
+</div>
 
+</div>
 </body>
 </html>  

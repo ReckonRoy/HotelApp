@@ -6,7 +6,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
          $_SESSION['name_s'] = $_POST['name'];
          
          
-         $_SESSION[surname_s] = $_POST['surname'];
+         $_SESSION['surname_s'] = $_POST['surname'];
          
          $_SESSION['email_s'] = $_POST['email'];
          
@@ -15,10 +15,13 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
          $_SESSION['checkOut_s'] = strtotime($_POST['checkOut']);
          
          $_SESSION['hotels'] = $_POST['hotels'];
-         
+         $_SESSION['cost'];
+		 $_SESSION['month'];
+		 $_SESSION['day'];
+		 $_SESSION['year'];
          header('Location: process.php');
          
-         $_SESSION['cost'];
+         
          
          
      }

@@ -11,7 +11,31 @@ if(isset($_POST['hotel']))
     echo $_SESSION['ci']."<br>";
     echo $_SESSION['co']."<br>";
     echo $_POST['hotel']."<br>";
-    echo $_SESSION['nod']." For R".$_SESSION['cost']."<br><br>";
+    
+	
+	foreach($_SESSION['array'] as $key => $array)
+	{
+		if( $key == $_POST['hotel'])
+		{
+			foreach( $array as $second_key => $value)
+			{
+				if($second_key == "total")
+				{
+					
+					if($_SESSION['year'] > 1)
+							  {
+                                $_SESSION['cost'] = (365 +  $_SESSION['month'] + $_SESSION['day'])* $value;
+                              }else
+							  {
+								$_SESSION['cost'] = ($_SESSION['month'] + $_SESSION['day'] )* $value;  
+							  }
+				}
+			}
+				
+		}
+	}
+	
+	echo $_SESSION['nod']." For R".$_SESSION['cost']."<br><br>";
 }
 
 
@@ -19,7 +43,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 $mail = new PHPMailer(true);
-sendMail($mail, false);
+sendMail($mail, true);
 //PHPMailer send email to user
 function sendmail($param, $param2){
     //true is real server false is via mailtrap
@@ -28,9 +52,9 @@ function sendmail($param, $param2){
             //Server settings live server
             $param->SMTPDebug = 0;                          // Enable verbose debug output
             $param->isSMTP();                               // Set mailer to use SMTP
-            $param->Host       = 'smtp.mailtrap.io';  // Specify main and backup SMTP servers
+            $param->Host       = '262e5937a9-aa2319@inbox.mailtrap.io';  		// Specify main and backup SMTP servers
             $param->SMTPAuth   = true;                      // Enable SMTP authentication
-            $param->Username   = 'f4851ad2013ba7';// SMTP username
+            $param->Username   = 'f4851ad2013ba7';			// SMTP username
             $param->Password   = '3d0f737c43567f';            // SMTP password
             $param->SMTPSecure = 'ssl';                     // Enable TLS encryption, `ssl` also accepted
             $param->Port       = 2525;                       // TCP port to connect to
@@ -68,7 +92,7 @@ function sendmail($param, $param2){
             //Server settings
             $param->SMTPDebug = 0;                    // Enable verbose debug output
             $param->isSMTP();                         // Set mailer to use SMTP
-            $param->Host       = 'smtp.mailtrap.io';  // Specify main and backup SMTP servers
+            $param->Host       = '262e5937a9-aa2319@inbox.mailtrap.io';  // Specify main and backup SMTP servers
             $param->SMTPAuth   = true;                // Enable SMTP authentication
             $param->Username   = '058c8c10955c23';    // SMTP username
             $param->Password   = 'a66e65a4ae45ce';    // SMTP password
