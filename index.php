@@ -4,27 +4,16 @@ session_start();
 if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['checkIn']) && isset($_POST['checkOut']) && isset($_POST['hotels']))
      {
          $_SESSION['name_s'] = $_POST['name'];
-         
-         
          $_SESSION['surname_s'] = $_POST['surname'];
-         
          $_SESSION['email_s'] = $_POST['email'];
-         
          $_SESSION['checkIn_s'] = strtotime($_POST['checkIn']);
-         
          $_SESSION['checkOut_s'] = strtotime($_POST['checkOut']);
-         
          $_SESSION['hotels'] = $_POST['hotels'];
          $_SESSION['cost'];
 		 $_SESSION['month'];
 		 $_SESSION['day'];
 		 $_SESSION['year'];
-		 $_SESSION['cost'];
-         header('Location: process.php');
-         
-         
-         
-         
+         header('Location: process.php'); 
      }
 ?>
 <!DOCTYPE html>
@@ -34,38 +23,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Home</title>
 		
-		<style type="text/css">
-			.table td{
-				padding: 20px;
-				background-color: white;
-			}
-			
-			input[type=text]:focus
-			{
-				border: 2px solid #3d1b89;
-				background-color: white;
-				color:  #3d1b89;
-				padding: 5px;
-			}
-			
-			.text 
-			{
-				width: 400px;
-				line-height: 2.5em;
-				outline: none;
-			}
-			
-			input[type=submit]
-			{
-				width: 100%;
-				font-size: 2em;
-				padding: 16px 32px;
-				border: none;
-				color: white;
-				background-color: #3d1b89
-			}
-				
-		</style>
+		<link rel="stylesheet" href="css/main.css" type="text/css">
         
         <!-- Google/Custom font -->
         <link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
@@ -77,7 +35,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
         <!-- Font awesome css -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
 
         <!-- Favicons -->
         <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png">
@@ -178,7 +136,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
              </div>
          </form>
      </div>
-         </div>
+        </div>
         </div>
         <br>
 
@@ -208,29 +166,12 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
             
         </footer>
 
-        ​​  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <script src="js/bootstrap.min.js"></script>
-        ​<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
     <script type="text/javascript" src="js/script.js"></script>
-
-    <script type="text/javascript">
-        
-        function finalCost(){
-            var roomType = document.getElementById("room_type").value;
-            var roomNum = document.getElementById("room_number").value;
-            var personNum = document.getElementById("person_number").value;
-            var childNum = document.getElementById("child_number").value;
-            var resFacilities = document.getElementById("res_facilities").value;
-
-            var total = (parseInt(roomType)*10) + ((roomNum)*2) + ((personNum)*3) + ((childNum)*2) + ((resFacilities)*5)
-
-            document.getElementById("result").innerHTML = total;
-        }
-    </script>
-
-
 	<script type="text/javascript" src="js/external.js">
     </script>
  

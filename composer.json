@@ -1,0 +1,12 @@
+{
+    "name": "le-roy/hotel-project",
+    "authors": [
+        {
+            "name": "Reckon Roy",
+            "email": "jongweleroy@yahoo.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.1"
+    }
+}
