@@ -76,23 +76,6 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
         </header>
         
    <div class="container" style="background-color: white;padding:0;">
-
-           <section>
-            <div class="container">
-
-                <div class="back_nav">
-                    <div class="col-sm-5">
-                        <h2>Contact Us</h2>
-                    </div>
-                    <div class="col-sm-7">
-                        <ul class="text_a_r" style="text-align: right;">
-                            <li><a href="index.php">Home</a></li>
-                            <li>Location and ContactUs</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
         
          <div class="container">
              <div class="hotel_reserve_box card">
@@ -121,7 +104,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
              </div>
              <div class="form-group">
                 <table class="table">
-				<tr><th colspan="3"><center>Select Your Hotels</center></th><tr>
+				<tr><th colspan="3"><center>Select two or more Hotels inorder to compare their services and cost</center></th><tr>
 				<tr><td><img src="img/familyRoom.jpg" width="100px" height="100px"></td><td>Park Inn by Radisson Cape Town Foreshore</td><td><input type="checkbox" name="hotels[]" value="Park Inn by Radisson Cape Town Foreshore"></td></tr>
 				<tr><td><img src="img/grandRoom.jpg" width="100px" height="100px"></td><td>Mandela Rhodes Place Hotel</td><td><input type="checkbox" name="hotels[]" value="Mandela Rhodes Place Hotel"></td></tr>
 				<tr><td><img src="img/banner.jpg" width="100px" height="100px"></td><td>Icon Luxury Apartments</td><td><input type="checkbox" name="hotels[]" value="Icon Luxury Apartments"></td></tr>

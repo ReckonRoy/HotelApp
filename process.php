@@ -48,16 +48,117 @@
 .div_hotel table
 {
 	cellpadding: 30;
+	border-collapse: collapse;
 	padding-left: 0px;
 	background-color: purple;
 	color: white;
 	width: 50%;
 }
 
+th
+{
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-size: 90%;
+	text-align: left;
+}
+
+		
+tr. even
+{
+	background-color: grey;
+}		
+		
+tr:hover
+{
+	background-color: grey;
+}
+
 li
 {
 	list-style: none;
 }
+
+/* --------------------------------------------------------
+Footer
+-----------------------------------------------------------*/
+.footer_bottom{
+    background: #222222;
+    padding: 15px 0;
+    position: relative;
+}
+.footer_bottom p{
+    margin: 0;
+    font-size: 11px;
+    color: #f2f0f0;
+    line-height: 20px;
+    text-transform: uppercase;
+}
+.footer_menu ul{
+    margin: 0;
+    text-align: right;
+}
+
+.footer_menu ul li:last-child{
+    border-right: 0px;
+}
+.footer_menu ul li{
+    display: inline-block;
+    border-right: 1px solid #f2f0f0;
+    line-height: 10px;
+}
+.footer_menu ul li a{
+    display: block;
+    text-transform: uppercase;
+    color: #f2f0f0;
+    font-size: 11px;
+    margin: 0 15px;
+}
+.footer_menu ul li a:hover,.main_header ul.nav.navbar-nav li > a:hover{
+    color: #3a0ba8;
+}
+
+.back_nav{
+    background: rgba(41, 7, 163, 0.95);
+    overflow: hidden;
+}
+.back_nav h2{
+    font-size: 18px;
+    margin: 0 0 0 15px;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 39px;
+    letter-spacing: 1px;
+}
+.back_nav ul{
+    margin: 0 15px 0 0;
+}
+.back_nav ul li{
+    display: inline-block;
+    font-family: 'Playfair Display';
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 39px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 0 19px;
+}
+.back_nav ul li a{
+    display: block;
+    color: #fff;
+    position: relative;
+}
+.back_nav ul li a:hover{
+    color: #000;
+}
+.back_nav ul li a:after {
+  content: "/";
+  position: absolute;
+  right: -17px;
+  top: 1px;
+    color: #fff;
+}
+
 </style>
 </head>
 <body>
@@ -343,10 +444,35 @@ foreach ($_SESSION['hotels'] as $val)
 </p>
 <p>
 <input type="submit" value="Book Now">
+
 </p>
 </form>
 </div>
-
+ <footer class="footer_area">
+            
+            <div class="footer_bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p>© 2020 BookitApp. All rights reserved</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <nav class="footer_menu">
+                                <ul>
+                                    
+                                    <li><a href="index.php">Home</a></li>
+                                    <li><a href="accommodation.php">Accommodation</a></li>
+                                    <li><a href="Facilities&Services.php">Facilities</a></li>
+                                    <li><a href="Location&ContactUs.php">ContactUs</a></li>
+                                    <li><a href="Reservation.php">Reservation</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </footer>
 </div>
 </body>
 </html>  
