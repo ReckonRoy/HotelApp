@@ -6,7 +6,7 @@ require "phpMailer/vendor/autoload.php";
 if(isset($_POST['hotel']))
 {
     echo "Hello ".$_SESSION['name_s']." ".$_SESSION['surname_s']."<br>";
-    echo "Thank you for booking with us, an email has been sent to the following email address. ".$_SESSION['email_s']."<br>";
+    echo "Thank you for booking with us, an email has been sent to <span><em>".$_SESSION['email_s']."</em></span><br>";
 	echo "It contains your booking details. For the ". $_POST['hotel']." Hotel<br>";
      
     
@@ -88,3 +88,24 @@ function sendmail($param, $param2){
     }
 }//endsendEmail
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+	.email
+	{
+		color: red;
+		font-size: 1.2em;
+		text-decoration: underlined;
+	}
+</style>
+<script type="text/javascript">
+var span = document.getElementsByTagName('span');
+span[0].className = 'email';
+</script>
+</head>
+<body>
+
+</body>
+</html>
