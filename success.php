@@ -5,12 +5,10 @@ require "phpMailer/vendor/autoload.php";
 
 if(isset($_POST['hotel']))
 {
-    echo $_SESSION['name_s']."<br>";
-    echo $_SESSION['surname_s']."<br>";
-    echo $_SESSION['email_s']."<br>";
-    echo $_SESSION['ci']."<br>";
-    echo $_SESSION['co']."<br>";
-    echo $_POST['hotel']."<br>";
+    echo "Hello ".$_SESSION['name_s']." ".$_SESSION['surname_s']."<br>";
+    echo "Thank you for booking with us, an email has been sent to the following email address. ".$_SESSION['email_s']."<br>";
+	echo "It contains your booking details. For the ". $_POST['hotel']." Hotel<br>";
+     
     
 	
 	foreach($_SESSION['hotel_cost'] as $key => $array)
@@ -35,7 +33,7 @@ if(isset($_POST['hotel']))
 		}
 	}
 	
-	echo $_SESSION['nod']." For R".$_SESSION['cost']."<br><br>";
+	echo "Number of days ".$_SESSION['nod']." Total R".$_SESSION['cost']."<br><br>";
 }
 
 

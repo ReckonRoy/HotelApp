@@ -5,161 +5,7 @@
 <head>
 
 <link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet">
-<style type="text/css">
-
-*
-{
-    padding: 0px;
-    margin: 0px;
-}
-
-#container
-{
-    width: 80%;
-    background-color: white;
-    padding: 5%;
-	margin: 0 auto;
-	font-family: 'Baloo 2', cursive;
-	
-}
-
-#user
-{
-	background-color: 	#ffeab4;
-	width: 75%;
-	padding: 3%;
-	margin-bottom: 5%;
-	color: grey;
-	border: 1px solid gray;
-}
-
-.div_hotel
-{
-	border: 1px solid #3d1b89;
-	background-color: white;
-	width: 75%;
-	margin-bottom: 5%;
-	padding: 3%;
-	padding-left: 1%;
-	padding-bottom: 0;
-	padding-top: 0;
-}
-
-.div_hotel table
-{
-	cellpadding: 30;
-	border-collapse: collapse;
-	padding-left: 0px;
-	background-color: purple;
-	color: white;
-	width: 50%;
-}
-
-th
-{
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	font-size: 90%;
-	text-align: left;
-}
-
-		
-tr. even
-{
-	background-color: grey;
-}		
-		
-tr:hover
-{
-	background-color: grey;
-}
-
-li
-{
-	list-style: none;
-}
-
-/* --------------------------------------------------------
-Footer
------------------------------------------------------------*/
-.footer_bottom{
-    background: #222222;
-    padding: 15px 0;
-    position: relative;
-}
-.footer_bottom p{
-    margin: 0;
-    font-size: 11px;
-    color: #f2f0f0;
-    line-height: 20px;
-    text-transform: uppercase;
-}
-.footer_menu ul{
-    margin: 0;
-    text-align: right;
-}
-
-.footer_menu ul li:last-child{
-    border-right: 0px;
-}
-.footer_menu ul li{
-    display: inline-block;
-    border-right: 1px solid #f2f0f0;
-    line-height: 10px;
-}
-.footer_menu ul li a{
-    display: block;
-    text-transform: uppercase;
-    color: #f2f0f0;
-    font-size: 11px;
-    margin: 0 15px;
-}
-.footer_menu ul li a:hover,.main_header ul.nav.navbar-nav li > a:hover{
-    color: #3a0ba8;
-}
-
-.back_nav{
-    background: rgba(41, 7, 163, 0.95);
-    overflow: hidden;
-}
-.back_nav h2{
-    font-size: 18px;
-    margin: 0 0 0 15px;
-    color: #fff;
-    text-transform: uppercase;
-    line-height: 39px;
-    letter-spacing: 1px;
-}
-.back_nav ul{
-    margin: 0 15px 0 0;
-}
-.back_nav ul li{
-    display: inline-block;
-    font-family: 'Playfair Display';
-    color: #fff;
-    text-transform: uppercase;
-    line-height: 39px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin: 0 19px;
-}
-.back_nav ul li a{
-    display: block;
-    color: #fff;
-    position: relative;
-}
-.back_nav ul li a:hover{
-    color: #000;
-}
-.back_nav ul li a:after {
-  content: "/";
-  position: absolute;
-  right: -17px;
-  top: 1px;
-    color: #fff;
-}
-
-</style>
+<link rel="stylesheet" href="css/process.css" type="text/css">
 </head>
 <body>
 <div id="container">
@@ -190,12 +36,14 @@ Footer
          $year = $userObject -> getYears();
 		 $_SESSION['year'] = $year;
          
-         $_SESSION['nod'] = $userObject -> getNum_of_days($month, $day, $year);
+         
         
          $_SESSION['ci'] = $userObject -> getCheckInDate();
          $_SESSION['co'] = $userObject -> getCheckOutDate();
-		 $_SESSION['array'] = $userObject -> hotelInfo_array;
+		$_SESSION['nod'] = $userObject -> getNum_of_days($month, $day, $year);
 		 $_SESSION['hotel_cost'] = $userObject -> hotel_cost;
+		 $_SESSION['array'] = $userObject -> hotelInfo_array;
+		 
     
 
 
@@ -277,17 +125,17 @@ Footer
         {
             if($y > 0 && $m > 0 && $d > 0)
             {
-                return "Number of nights at which your accomodation will last is: ". $y. " year(s) ".$m." month(s), ".$d." day(s)";
+                return $y. " year(s) ".$m." month(s), ".$d." day(s)";
             }
             
             else if($y <= 0 && $m > 0 && $d > 0)
             {
-                return "Number of nights at which your accomodation will last is: ".$m." month(s), ".$d." day(s)";
+                return $m." month(s), ".$d." day(s)";
             }
             
             else if($y <= 0 && $m <= 0 && $d > 0)
             {
-                return "Number of nights at which your accomodation will last is: ".$d." day(s)";
+                return $d;
             }
             else {
                 return "invalid date was submitted";
@@ -322,6 +170,21 @@ Footer
                 )
             );
 			
+			foreach($this -> hotel_cost as $key => $array)
+			{
+				foreach( $array as $second_key => $value)
+				{
+					if($_SESSION['year'] > 1)
+					{
+						$_SESSION['money'] = (365 +  $_SESSION['month'] + $_SESSION['day'])* $value;
+					}else
+					{
+						$_SESSION['money'] = ($_SESSION['month'] + $_SESSION['day'] )* $value;  
+					}
+				}
+			}
+		
+			
             $this -> hotelInfo_array = array( 
                 'Park Inn by Radisson Cape Town Foreshore' => array(
                     '<div class="div_hotel"><table cellspacing="10"><tr><th scope="row">Hotel Name: </th>' => "<td>Park Inn by Radisson Cape Town Foreshore</tr></td>",
@@ -332,7 +195,9 @@ Footer
                     '<tr><th scope="row">Wifi: </th>' => "<td>No</td></tr>",
                     '<tr><th scope="row">Breakfast: </th>' => "<td>No</td></tr>",
                     '<tr><th scope="row">Air conditioning: </th>' => "<td>yes</td></tr>",
-                    '<tr><th scope="row">total' => "<td> R2222 </td></tr></table></div>"
+					'<tr><th scope="row">Number Of Days: </th>' => "<td>".$_SESSION['nod']."</td></tr>",
+                    '<tr><th scope="row">Daily Rate</th>' => "<td> R2222 </td></tr>",
+					'<tr><th scope="row">Total</th>' => "<td>".$_SESSION['money']."</td></tr></table></div>"
                 ),
                 
                 'Mandela Rhodes Place Hotel' => array(
@@ -344,7 +209,8 @@ Footer
                     '<tr><th scope="row">breakfast: </th>' => "<td>no</td></tr>", 
                     '<tr><th scope="row">wifi: </th>' => "<td>no</td></tr>",
                     '<tr><th scope="row">air conditioning: </th>' => "<td>yes</td></tr>",
-                    '<tr><th scope="row"> total </th>' => "<td> R2428 </td></tr></table></div>"
+					'<tr><th scope="row">Number Of Days: </th>' => "<td>".$_SESSION['nod']."</td></tr>",
+                    '<tr><th scope="row"> Daily Rate </th>' => "<td> R2428 </td></tr></table></div>"
                 ),
                 'Icon Luxury Apartments' => array(
                     '<div class="div_hotel"><table cellspacing="10"><tr><td>Hotel Name: </td>' => "<td>Icon Luxury Apartments</td></tr>",
@@ -355,7 +221,8 @@ Footer
                     '<tr><th scope="row">wifi</th>' => "<td>no</td></tr>",
                     '<tr><th scope="row">breakfast</th>' => "<td>no</td></tr>",
                     '<tr><th scope="row">air conditioning</th>' => "<td>yes</td></tr>",
-                    '<tr><th scope="row"> total </th>' => "<td> R2552 </td></tr></table></div>"
+					'<tr><th scope="row">Number Of Days: </th>' => "<td>".$_SESSION['nod']."</td></tr>",
+                    '<tr><th scope="row"> Daily Rate </th>' => "<td> R2552 </td></tr></table></div>"
                 ),
                 'Taj Cape Town' => array(
                     '<div class="div_hotel"><table cellspacing="10"><tr><td>Hotel Name: </td>' => "<td>Taj Cape Town</td></tr>",
@@ -366,7 +233,8 @@ Footer
                     '<tr><th scope="row">wifi</th>' => "<td>yes</td></tr>",
                     '<tr><th scope="row">breakfast</th>' => "<td>yes</td></tr>",
                     '<tr><th scope="row">air conditioning</th>' => "<td>yes</td></tr>",
-                    '<tr><th scope="row">total</th>' => "<td>R5646</td></tr></table></div>"
+					'<tr><th scope="row">Number Of Days: </th>' => "<td>".$_SESSION['nod']."</td></tr>",
+                    '<tr><th scope="row">Daily Rate</th>' => "<td>R5646</td></tr></table></div>"
                 ),
                 'City Lodge Hotel Victoria And Alfred Waterfront' => array(
                     '<div class="div_hotel"><table cellspacing="10"><tr><td>Hotel Name: </td>' => "<td>City Lodge Hotel Victoria And Alfred Waterfront</td></tr>",
@@ -376,8 +244,9 @@ Footer
                     '<tr><th scope="row">kitchen: </th>' => "<td>no</td></tr>",
                     '<tr><th scope="row">wifi: </th>' => "<td>no</td></tr>",
                     '<tr><th scope="row">breakfast: </th>' => "<td>no</td></tr>",
-                    '<tr><th scope="row">air conditioning: </th' => "<td>yes</td></tr>",
-                    '<tr><th scope="row">total</th>' => "<td>R3474</td></tr></table></div>"
+                    '<tr><th scope="row">air conditioning: </th>' => "<td>yes</td></tr>",
+					'<tr><th scope="row">Number Of Days: </th>' => "<td>".$_SESSION['nod']."</td></tr>",
+                    '<tr><th scope="row">Daily Rate</th>' => "<td>R3474</td></tr></table></div>"
                 ),
                 'Southern Sun Cape Sun' => array(
                     '<div class="div_hotel"><table cellspacing="10"><tr><td>Hotel Name: </td>' => "<td>Southern Sun Cape Sun</td></tr>",
@@ -388,7 +257,8 @@ Footer
                     '<tr><th scope="row">wifi: </th>' => "<td>no</td></tr>",
                     '<tr><th scope="row">breakfast: </th>' => "<td>no</td></tr>",
                     '<tr><th scope="row">air conditioning: </th>' => "<td>yes</td></tr>",
-                    '<tr><th scope="row">total</th>' => "<td>R4590</td></tr></table></div>"
+					'<tr><th scope="row">Number Of Days: </th>' => "<td>".$_SESSION['nod']."</td></tr>",
+                    '<tr><th scope="row">Daily Rate</th>' => "<td>R4590</td></tr></table></div>"
                 )
             );
             
