@@ -21,26 +21,28 @@
 
          $userObject = new User($_SESSION['name_s'],  $_SESSION['surname_s'], $_SESSION['email_s'], $_SESSION['checkIn_s'], $_SESSION['checkOut_s'], $_SESSION['hotels']);
          
+		 $year = $userObject -> getYears();
+		 $_SESSION['year'] = $year;
+		 $month = $userObject -> getMonths();
+		 $_SESSION['month'] = $month;
+		 $day = $userObject -> getDays();
+		 $_SESSION['day'] = $day;
+		 $_SESSION['nod'] = $userObject -> getNum_of_days($month, $day, $year);
          echo $userObject -> getUser();
          echo $userObject -> getCheckInDate();
          echo $userObject -> getCheckOutDate();
          
          echo $userObject -> getHotels();
          
-         $month = $userObject -> getMonths();
-		 $_SESSION['month'] = $month;
+         
 		 
-         $day = $userObject -> getDays();
-		 $_SESSION['day'] = $day;
-		 
-         $year = $userObject -> getYears();
-		 $_SESSION['year'] = $year;
+        
          
          
         
          $_SESSION['ci'] = $userObject -> getCheckInDate();
          $_SESSION['co'] = $userObject -> getCheckOutDate();
-		$_SESSION['nod'] = $userObject -> getNum_of_days($month, $day, $year);
+		
 		 $_SESSION['hotel_cost'] = $userObject -> hotel_cost;
 		 $_SESSION['array'] = $userObject -> hotelInfo_array;
 		 
