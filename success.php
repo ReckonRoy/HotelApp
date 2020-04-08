@@ -109,3 +109,6 @@ span[0].className = 'email';
 
 </body>
 </html>
+<?php
+session_destroy();
+?>
